@@ -23,7 +23,7 @@
         singleCatArray,
         $ = window.$;
     main = function () {
-        $.getJSON("javascripts/lib/all.json", function (toDoList) {
+        $.getJSON("/todo.json", function (toDoList) {
             toDoList.forEach(function (taskList) {
                 jsonTask(taskList); // prints all tabs
                 buttonHandler(button);
@@ -82,17 +82,35 @@
             button = $("<button type ='button'>X</button>");
             $(".allTasks").append(button).append(allTask).append(allCategory);
         };
-        $("#inputButton").click(function () {// add task and categoris to the DOM
-            newTask = $("<div>" + $("#newTask").val() + "</div>").addClass("ACTab");
-            newCat = $("<div>" + $("#newCategory").val() + "</div>").addClass("category");
-            $(".allTasks").append("<button type ='button'>X</button>").append(newTask).append(newCat);
-            $("#newTask").val("");
-            $("#newCategory").val("");
-            $(".allTasks > button").click(function () {// sets event handler to new buttons
-                $(this).nextUntil("button").remove();
-                $(this).remove();
+        $("#inputButton").click(function (){
+          var task = $("#newTask").val(),
+              category = $("#newCategory").val(),
+              post_object = {};
+              
+          if (task === "" || category ===""){
+            alert("have to add something");
+          } else{
+            post_object.description = task;
+            post_object.category = category;
+            
+            $.post("/todo/new", post_object, function (response){
+              $("#newTask").val("");
+              $("#newCategory").val("");
             });
+          }
+              
         });
+        //$("#inputButton").click(function () {// add task and categoris to the DOM
+        //    newTask = $("<div>" + $("#newTask").val() + "</div>").addClass("ACTab");
+        //    newCat = $("<div>" + $("#newCategory").val() + "</div>").addClass("category");
+        //    $(".allTasks").append("<button type ='button'>X</button>").append(newTask).append(newCat);
+        //    $("#newTask").val("");
+        //    $("#newCategory").val("");
+        //    $(".allTasks > button").click(function () {// sets event handler to new buttons
+        //        $(this).nextUntil("button").remove();
+        //        $(this).remove();
+        //    });
+        //});
         categoryList = function (alldiv) {// map catigories and assign tasks
             tasks = $(alldiv).map(function () { // get tasks into simple array
                 return $(this).text();

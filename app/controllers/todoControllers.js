@@ -1,8 +1,8 @@
-var Person = require("../models/person.js"),
-    PersonController = {};
+var ToDo = require("../models/todoModels.js"),
+    ToDoController = {};
 
-PersonController.list = function (req, res) {
-    Person.find({}, function (err, people) {
+ToDoController.list = function (req, res) {
+    ToDo.find({}, function (err, people) {
 	if (err !== null) {
 	    console.log(err);
 	} else {
@@ -11,14 +11,15 @@ PersonController.list = function (req, res) {
     });
 };
 
-PersonController.create = function (req, res) {
-    var p = new Person({
-	"name":req.body.name,
-	"age":req.body.age
+ToDoController.create = function (req, res) {
+    var p = new ToDo({
+	"task":req.body.task,
+	"category":req.body.category
     });
 
     p.save(function (err, result) {
 	if (err !== null) {
+    console.log(err);
 	    //send the error
 	} else {
 	    res.json(result);
@@ -26,15 +27,17 @@ PersonController.create = function (req, res) {
     });
 };
 
-PersonController.destroy = function (req, res) {
-    Person.findOne({"name":req.body.name}, function (err, person) {
+ToDoController.destroy = function (req, res) {
+    ToDo.findOne({"name":req.body.name}, function (err, person) {
 	if (err !== null) {
+    console.log(err);
 	    //handle err
-	} else if (person === null) {
-	    //person not found
+	} else if (todo === null) {
+	    //todo not found
 	} else {
-	    person.remove(function (err) {
+	    todo.remove(function (err) {
 		if (err !== null) {
+      console.log(err);
 		    //handle err
 		}
 	    });
@@ -42,4 +45,4 @@ PersonController.destroy = function (req, res) {
     });
 };
 
-module.exports = PersonController;
+module.exports = ToDoController;

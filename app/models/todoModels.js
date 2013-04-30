@@ -1,23 +1,23 @@
 var mongoose = require("mongoose"),
-    PersonSchema,
-    Person;
+    ToDoSchema,
+    ToDo;
 
 mongoose.connect("mongodb://localhost/development");
 
-PersonSchema = new mongoose.Schema({
-    "name": String,
-    "age" : Number
+ToDoSchema = new mongoose.Schema({
+    "task": String,
+    "category" : String
 });
 
-Person = mongoose.model("Person", PersonSchema);
+Person = mongoose.model("ToDo", ToDoSchema);
 
-Person.findOne({}, function (err, result) {
+ToDo.findOne({}, function (err, result) {
     if (err !== null) {
 	console.log(err);
     } else if (result === null) {
-	var p = new Person({
-	    "name": "Bill",
-	    "age": 42
+	var p = new ToDo({
+	    "task": "Invent new app",
+	    "category": "work"
 	});
 
 	p.save(function (err) {
@@ -28,5 +28,5 @@ Person.findOne({}, function (err, result) {
     }
 });
 
-module.exports = Person;
+module.exports = ToDo;
 
