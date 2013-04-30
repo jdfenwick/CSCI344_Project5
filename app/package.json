@@ -1,0 +1,8 @@
+{
+  "name":"project_5",
+  "description":"todo-list-server",
+  "dependencies":{
+    "mongoose":"3.6.x",
+    "express":"3.1.x"
+  }
+}
