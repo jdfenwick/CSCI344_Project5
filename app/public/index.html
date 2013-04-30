@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My App</title>
-    <link rel "stylesheet" type = "text/css" href = "stylesheets/app.css"></link>
+    <title>To Do List</title>
+    <link href='http://fonts.googleapis.com/css?family=Diplomata+SC' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css' />
+    <link rel ="stylesheet" href ="stylesheets/app.css" />
   </head>
-
   <body>
-    <h1>People</h1>
-    <div class="people_list">
-    </div>
-
-    <p>Name: <input id="name" type="text"></input></p>
-    <p>Age: <input id="age" type="text"></input></p>
-    <button id="new_person">Create Person</button>
-
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="javascripts/client-app.js"></script>
+   <div class ="container">
+     <h1>The To Do's</h1>
+    <div class ="tabBoxWrapper">
+      <div class ="tabs">
+         <a class ="tab active" id ="task" href ="tab1">All</a>
+         <a class ="tab" id ="cats" href ="tab2">Categories</a>
+         <a class ="tab" href ="tab3">Edit</a>
+      </div><!-- end of tabs-->
+      <div class ="content">
+         <div class ="tab active" id ="tab1">
+           <div class ="allTasks"></div>
+         </div>
+         <div class ="tab" id ="tab2">
+           <div class ="byCategories"></div>
+         </div>
+         <div class ="tab" id ="tab3">
+           <div class ="editTab">
+             <div class ="newTask">Task:<input type="text" size ="33" id ="newTask" /></div>
+             <div class ="newCategory">Category:<input type="text" id ="newCategory" /></div>
+             <div class ="addButton"><button type ="submit" id="inputButton">Add Item To List</button></div>
+           </div>
+         </div>
+      </div><!-- end of content-->
+    </div><!-- end of boxWrapper-->
+   </div><!-- end of container-->
+   <script src ="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+   <script src ="javascripts/app/app.js"></script>
   </body>
 </html>
