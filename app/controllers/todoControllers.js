@@ -6,7 +6,7 @@ ToDoController.list = function (req, res) {
 	if (err !== null) {
 	    console.log(err);
 	} else {
-	    res.json(people);
+	    res.json(todo);
 	}
     });
 };
@@ -27,22 +27,22 @@ ToDoController.create = function (req, res) {
     });
 };
 
-ToDoController.destroy = function (req, res) {
-    ToDo.findOne({"name":req.body.name}, function (err, person) {
-	if (err !== null) {
-    console.log(err);
-	    //handle err
-	} else if (todo === null) {
+//ToDoController.destroy = function (req, res) {
+//    ToDo.findOne({"task":req.body.task, function (err, todo) {
+//	if (err !== null) {
+//    console.log(err);
+//	    //handle err
+//	} else if (todo === null) {
 	    //todo not found
-	} else {
-	    todo.remove(function (err) {
-		if (err !== null) {
-      console.log(err);
+//	} else {
+//	    todo.remove(function (err) {
+//		if (err !== null) {
+//      console.log(err);
 		    //handle err
-		}
-	    });
-	}
-    });
-};
+//		}
+//	    });
+//	}
+//    });
+//};
 
 module.exports = ToDoController;
