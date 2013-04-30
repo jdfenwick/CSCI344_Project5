@@ -5,7 +5,7 @@ var http = require("http"),
     pc;
 
 // Load Controllers
-pc = require("./controllers/person_controller.js");
+pc = require("./controllers/todoController.js");
 
 app.configure(function () {
     // Define our static file directory, it will be 'public'                             
@@ -19,7 +19,7 @@ http.createServer(app).listen(3000, function () {
     console.log("Server running on port 3000");
 });
 
-app.get("/people.json", pc.list);
-app.post("/people/new", pc.create);
+app.get("/all.json", pc.list);
+app.post("/todo/new", pc.create);
 //app.post("/people/delete", pc.destroy);
 
